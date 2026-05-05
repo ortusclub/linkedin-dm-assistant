@@ -1,0 +1,49 @@
+{
+  "manifest_version": 3,
+  "name": "Ortus Club DM Assistant",
+  "version": "1.2.0",
+  "description": "LinkedIn DM and intro-campaign helper for Ortus Club operators — personalised messages from a Google Sheet, triggered by keystroke.",
+  "permissions": ["storage", "activeTab", "scripting"],
+  "host_permissions": ["*://*.linkedin.com/*", "https://docs.google.com/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "16":  "icons/ortus-club-dm-16.png",
+    "32":  "icons/ortus-club-dm-32.png",
+    "48":  "icons/ortus-club-dm-48.png",
+    "128": "icons/ortus-club-dm-128.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16":  "icons/ortus-club-dm-16.png",
+      "32":  "icons/ortus-club-dm-32.png",
+      "48":  "icons/ortus-club-dm-48.png",
+      "128": "icons/ortus-club-dm-128.png"
+    }
+  },
+  "commands": {
+    "open-message": {
+      "suggested_key": { "default": "Alt+O", "mac": "Alt+O" },
+      "description": "Open the LinkedIn message box for the current profile"
+    },
+    "paste-dm": {
+      "suggested_key": { "default": "Alt+D", "mac": "Alt+D" },
+      "description": "Paste the saved DM body"
+    },
+    "paste-intro": {
+      "suggested_key": { "default": "Alt+I", "mac": "Alt+I" },
+      "description": "Paste the saved introduction recipient, title, and body"
+    },
+    "send-message": {
+      "description": "Send the open LinkedIn message"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.linkedin.com/*"],
+      "js": ["content.js"]
+    }
+  ]
+}
